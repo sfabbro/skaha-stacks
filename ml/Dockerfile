@@ -1,9 +1,10 @@
 ARG OWNER=skaha
-ARG BASE_CONTAINER=${OWNER}/astro-notebook
+ARG BASE_CONTAINER=${OWNER}/astro
 FROM ${BASE_CONTAINER}
 
-USER ${NB_UID}
+USER ${NB_USER}
 
+# install conda environment on top of the base one
 COPY env.yml .
 
 RUN mamba env update -n base --file env.yml \

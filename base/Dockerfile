@@ -12,17 +12,6 @@ LABEL maintainer="CANFAR Project <support@canfar.net>"
 # file to ensure the image runs as a unprivileged user by default.
 USER root
 
-# this is a hack to remove the jovyan:users to jovyan:jovyan on /opt/conda
-# skaha has group 100 and this bypass it
-# change /opt/conda out of users group (100)
-# for users to do pip and conda environments
-# in their persistant home directory rather than /opt/conda
-ENV NB_GID=jovyan
-RUN groupadd jovyan \
-    && usermod -G jovyan -a jovyan \
-    && fix-permissions ${CONDA_DIR} \
-    && fix-permissions /home/${NB_USER}
-
 RUN apt-get update --yes --quiet --fix-missing \
     && apt-get upgrade --yes --quiet
 
@@ -35,11 +24,7 @@ RUN apt-get clean --yes \
 # nsswitch for correct sss lookup
 ADD nsswitch.conf /etc/
 
-# start terminal in home on filesystem and ensure jupyter home directories
-RUN mkdir /usr/local/bin/start-notebook.d/
-COPY skaha-hook.sh /usr/local/bin/start-notebook.d/
-
-USER ${NB_UID}
+USER ${NB_USER}
 
 COPY condarc .
 RUN cat condarc >> ${CONDA_DIR}/.condarc
