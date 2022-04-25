@@ -1,0 +1,7 @@
+sqlalchemy
+toolz
+parquet-tools
+scikit-image
+cloudpickle
+python-wget
+h5py

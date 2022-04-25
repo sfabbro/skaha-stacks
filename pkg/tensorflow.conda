@@ -1,0 +1,5 @@
+keras
+keras-tuner
+sktime-all-extras
+tensorflow=*=*cpu*
+tensorflow-probability

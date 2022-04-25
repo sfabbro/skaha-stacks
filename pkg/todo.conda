@@ -1,0 +1,39 @@
+prophet
+sktime
+tpot
+tsfresh
+tslearn
+
+#deepsig # bioconda channel
+#fbprobhet: has been obsolete, tricky old deps.
+#kats : also very restrictive deps
+#phate # bioconda channel
+#salesforce-merlion: needs fbprophet
+#trimap # bioconda channel
+#jupyterlab-nvdashboard
+#glue-vispy-viewers
+#ginga
+#imexam
+#pyg=*=*cpu*
+#pytorch-cluster=*=*cpu*
+#pytorch-scatter=*=*cpu*
+#pytorch-sparse=*=*cpu*
+#pytorch-spline-conv=*=*cpu*
+#fastai
+#opencv-python-headless
+#pywick
+
+# pip
+# not yet ready cause deps are annoyingly breaking other ones.
+#- jdaviz
+#pillow-simd # buggy
+#greykite # tricky deps
+#forestci # conda-forge too old
+#elegy
+#objax
+#ott
+#augly
+#torchdyn
+#mcml
+#pytorch-tabular
+#tensorflow-decision-forests # too new
