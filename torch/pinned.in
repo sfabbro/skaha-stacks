@@ -1,3 +1,0 @@
-faiss=*=*%%DEVICE%%*
-pytorch=*=*%%DEVICE%%*
-torchvision=*=*%%DEVICE%%*

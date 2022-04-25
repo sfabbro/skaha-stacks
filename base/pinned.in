@@ -1,8 +1,0 @@
-python=3.9.*
-arrow-cpp=*=*%%DEVICE%%*
-pyarrow=*=*%%DEVICE%%*
-libblas=*=*mkl*
-libcblas=*=*mkl*
-liblapack=*=*mkl*
-liblapacke=*=*mkl*
-numexpr=*=*mkl*
