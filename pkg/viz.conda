@@ -3,7 +3,7 @@ arviz
 cmasher
 datashader
 hist
-proplot
+#proplot
 python-graphviz
 scikit-plot
 seaborn

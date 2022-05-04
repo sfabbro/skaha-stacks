@@ -48,7 +48,8 @@ RUN mamba env update --quiet -n base --file env.yml \
 
 USER root
 ADD pinned ${CONDA_DIR}/conda-meta/pinned
-ADD condarc ${CONDA_DIR}/.condarc
+COPY condarc .
+RUN cat condarc >> ${CONDA_DIR}/.condarc
 RUN fix-permissions ${CONDA_DIR}
 
 

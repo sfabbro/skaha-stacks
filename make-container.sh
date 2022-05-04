@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PYTHON_VERSION=3.9.*
-CUDA_VERSION=11.2
+CUDA_VERSION=11.2*
 RAPIDS_VERSION=22.04
 
 dir=${1}
@@ -13,9 +13,9 @@ cp Dockerfile.env ${dir}/Dockerfile
 
 # make list of packages
 for p in $(cat envs/${env}); do
-    [[ -e pkg/${p}.channels ]] && cat pkg/${p}.channels >> ${dir}/channels.list
-    [[ -e pkg/${p}.conda ]] && cat pkg/${p}.conda >> ${dir}/conda.list
-    [[ -e pkg/${p}.pip ]]   && cat pkg/${p}.pip >> ${dir}/pip.list
+    [[ -e pkg/${p}.channels ]] && grep -v \# pkg/${p}.channels >> ${dir}/channels.list
+    [[ -e pkg/${p}.conda ]] && grep -v \# pkg/${p}.conda >> ${dir}/conda.list
+    [[ -e pkg/${p}.pip ]]   && grep -v \# pkg/${p}.pip >> ${dir}/pip.list
 done
 
 # gpu hacks
