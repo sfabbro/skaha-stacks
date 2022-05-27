@@ -29,8 +29,6 @@ tslearn
 #pillow-simd # buggy
 #greykite # tricky deps
 #forestci # conda-forge too old
-#elegy
-#objax
 #ott
 #augly
 #torchdyn

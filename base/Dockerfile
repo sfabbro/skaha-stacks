@@ -29,6 +29,12 @@ RUN wget --quiet http://www.star.bris.ac.uk/~mbt/stilts/stilts.jar -O /usr/local
     && wget --quiet http://www.star.bris.ac.uk/~mbt/stilts/stilts -O /usr/local/bin/stilts \
     && chmod +x /usr/local/bin/stilts
 
+# install topcat with parquet
+RUN wget --quiet http://www.star.bris.ac.uk/~mbt/topcat/topcat-extra.jar -O /usr/local/bin/topcat-extra.jar \
+    && wget --quiet http://www.star.bris.ac.uk/~mbt/topcat/topcat -O /usr/local/bin/topcat \
+    && sed -i -e 's/topcat-full/topcat-extra/g' /usr/local/bin/topcat \
+    && chmod +x /usr/local/bin/topcat
+
 # nsswitch for correct sss lookup
 ADD nsswitch.conf /etc/
 

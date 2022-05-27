@@ -18,9 +18,9 @@ jupyterlab-system-monitor
 jupyterlab-variableinspector
 papermill
 websockets
-voila
-voila-vuetify
-voila-gridstack
+#voila
+#voila-vuetify
+#voila-gridstack
 freetype-py
 bqplot
 bqplot-image-gl
