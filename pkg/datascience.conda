@@ -41,4 +41,4 @@ umap-learn
 vaex
 visidata
 wandb
-xgboost
+xgboost=*=*cpu*

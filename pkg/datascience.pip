@@ -2,5 +2,3 @@ babyplots
 clevercsv[full]
 pandas-selectable
 polars
-dm-pix
-jaxopt

@@ -2,5 +2,5 @@ gpflow
 keras
 keras-tuner
 sktime-all-extras
-tensorflow=*=*cpu*
+tensorflow=2.8.1=*cpu*
 tensorflow-probability

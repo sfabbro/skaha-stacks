@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PYTHON_VERSION=3.9.*
-CUDA_VERSION=11.2*
+CUDA_VERSION=11.2
 RAPIDS_VERSION=22.04
 
 dir=${1}
@@ -20,7 +20,7 @@ done
 
 # gpu hacks
 if [[ ${dir} =~ gpu ]]; then
-    echo "cudatoolkit=${CUDA_VERSION}" >> ${dir}/conda.list
+    echo "cudatoolkit=${CUDA_VERSION}*" >> ${dir}/conda.list
     echo "nccl" >> ${dir}/conda.list
     grep -q jupyter ${dir}/conda.list && \
 	echo "jupyterlab-nvdashboard" >> ${dir}/conda.list
@@ -32,8 +32,9 @@ if [[ ${dir} =~ gpu ]]; then
 	echo "nvidia" >> ${dir}/channels.list
 	echo "rapids=${RAPIDS_VERSION}"  >> ${dir}/conda.list
     fi
-
     # sed -i -e "s|cpu|cuda|g" ${dir}/pip.list
+    sed -i -e "s|\(CONDA_OVERRIDE_CUDA=\).*|\1${CUDA_VERSION}|" ${dir}/Dockerfile
+    #CONDA_CUDA_VERSION="${CUDA_VERSION}"
 fi
 echo "conda-forge" >> ${dir}/channels.list
 
@@ -44,6 +45,11 @@ cat ${dir}/channels.list \
     | sort | uniq \
     | sed -e 's|\(.*\)|  - \1|g' \
 	  >> ${dir}/env.yml
+
+# useless?
+#echo >> ${dir}/env.yml "variables:"
+#echo >> ${dir}/env.yml "  CONDA_OVERRIDE_CUDA: \"${CONDA_CUDA_VERSION}\""
+#echo >> ${dir}/env.yml "  MKL_THREADING_LAYER: \"GNU\""
 
 echo >> ${dir}/env.yml "dependencies:"
 echo >> ${dir}/env.yml "  - python=${PYTHON_VERSION}"
@@ -62,10 +68,6 @@ if [[ $(wc -l ${dir}/pip.list | awk '{print $1}') -gt 0 ]]; then
 	| sed -e 's|\(.*\)|     - \1|g' \
 	      >> ${dir}/env.yml
 fi
-
-# causes issues in conda with MKL
-#echo >> ${dir}/env.yml "variables:"
-#echo >> ${dir}/env.yml '  - MKL_THREADING_LAYER: "GNU"'
 
 # make the pinned file from the yml file
 awk '/=/{print $2}' ${dir}/env.yml |  sed 's|=| |g' > ${dir}/pinned

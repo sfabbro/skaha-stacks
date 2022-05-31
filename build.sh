@@ -15,7 +15,7 @@ for container in "${CONTAINERS[@]}"; do
     docker build --rm --force-rm \
 	   -t ${OWNER}/${container}:${TAG} \
 	   --build-arg TAG=${TAG} \
-	   --build-arg OWNER=${OWNER} .
+	   --build-arg OWNER=${OWNER} . | tee build.log
     popd
     docker push ${OWNER}/${container}:${TAG}
 done
