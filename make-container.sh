@@ -1,8 +1,8 @@
 #!/bin/bash
 
-PYTHON_VERSION=3.9.*
+PYTHON_VERSION=3.9
 CUDA_VERSION=11.2
-RAPIDS_VERSION=22.04
+RAPIDS_VERSION=22.06
 
 dir=${1}
 env=$(basename ${dir%-gpu})
@@ -52,7 +52,7 @@ cat ${dir}/channels.list \
 #echo >> ${dir}/env.yml "  MKL_THREADING_LAYER: \"GNU\""
 
 echo >> ${dir}/env.yml "dependencies:"
-echo >> ${dir}/env.yml "  - python=${PYTHON_VERSION}"
+echo >> ${dir}/env.yml "  - python=${PYTHON_VERSION}.*"
 echo >> ${dir}/env.yml "  - pip"
 echo >> ${dir}/env.yml "  - pip-tools"
 

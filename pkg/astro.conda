@@ -28,6 +28,7 @@ numcosmo
 pgplot
 photutils
 pydl
+pyregion
 pyvo
 regions
 reproject

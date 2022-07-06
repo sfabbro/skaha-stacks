@@ -1,6 +1,6 @@
 gpflow
 keras
 keras-tuner
-sktime-all-extras
 tensorflow=2.8.1=*cpu*
 tensorflow-probability
+xplique

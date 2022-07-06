@@ -4,8 +4,6 @@ image=$1
 # user and home can be any, but with belong to group 100 (users)
 user="sfabbro"
 uid="$(id -u ${user})"
-#user="jovyan"
-#uid=1000
 home="/home/${user}"
 token="dummy"
 sessionid="123456"

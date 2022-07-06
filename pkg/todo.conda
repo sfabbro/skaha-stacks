@@ -1,9 +1,11 @@
 prophet
 sktime
-tpot
+sktime-all-extras
 tsfresh
 tslearn
 
+
+#featuretools
 #deepsig # bioconda channel
 #fbprobhet: has been obsolete, tricky old deps.
 #kats : also very restrictive deps
@@ -25,7 +27,7 @@ tslearn
 
 # pip
 # not yet ready cause deps are annoyingly breaking other ones.
-#- jdaviz
+#-jdaviz
 #pillow-simd # buggy
 #greykite # tricky deps
 #forestci # conda-forge too old

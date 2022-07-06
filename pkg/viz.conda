@@ -1,6 +1,7 @@
 altair
 #arviz
 cmasher
+corner
 datashader
 hist
 #proplot

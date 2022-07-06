@@ -2,20 +2,26 @@
 
 OWNER="images.canfar.net/skaha"
 TAG=$(date +%y.%m)
-CONTAINERS=( astroml astrotorch astroflow astroml-gpu astrotorch-gpu astroflow-gpu )
 
-pushd base
-docker build --rm --force-rm -t ${OWNER}/base:${TAG} --build-arg OWNER=${OWNER} .
+CONTAINERS=( astroml astrojax astroflow astrotorch astroml-gpu astrojax-gpu astrotorch-gpu astroflow-gpu )
+
+# build base container
+mkdir -p build
+cp -r base build/base
+pushd build/base
+docker build --rm --force-rm \
+       --tag ${OWNER}/base:${TAG} \
+       --build-arg TAG=${TAG} \
+       --build-arg OWNER=${OWNER} . | tee build.log
 popd
 
-mkdir -p build
+# build all other ones
 for container in "${CONTAINERS[@]}"; do
     ./make-container.sh build/${container}
     pushd build/${container}
     docker build --rm --force-rm \
-	   -t ${OWNER}/${container}:${TAG} \
+	   --tag ${OWNER}/${container}:${TAG} \
 	   --build-arg TAG=${TAG} \
 	   --build-arg OWNER=${OWNER} . | tee build.log
     popd
-    docker push ${OWNER}/${container}:${TAG}
 done

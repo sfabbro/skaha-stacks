@@ -58,5 +58,4 @@ COPY condarc .
 RUN cat condarc >> ${CONDA_DIR}/.condarc
 RUN fix-permissions ${CONDA_DIR}
 
-
 WORKDIR ${HOME}

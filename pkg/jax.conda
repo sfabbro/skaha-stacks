@@ -1,0 +1,7 @@
+chex
+dm-haiku
+flax
+jax
+jaxlib=*=*cpu*
+numpyro
+optax
